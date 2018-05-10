@@ -1,6 +1,6 @@
 <?php
-    var $serverName = DB_SERVER_NAME;
     var $database = DB_NAME;
+    var $serverName = DB_SERVER_NAME;
     var $user = DB_USER;
     var $password = DB_PWD;
     var $hostname = DB_HOST;

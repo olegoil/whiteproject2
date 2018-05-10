@@ -14,5 +14,4 @@ define('SMTP_USERNAME', 'xanatosdark@yandex.ru');
 define('SMTP_PWD', 'Vivanco2!');
 define('SMTP_FROM', 'White Standard');
 define('SMTP_CHARSET', 'utf-8');
-
 ?>
