@@ -1,5 +1,7 @@
 <?php
 
+include 'conns/config.php';
+
 class sql {
     public function __call($method, $args)
     {

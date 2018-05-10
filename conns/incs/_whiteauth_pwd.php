@@ -42,7 +42,7 @@
             $email_body .= '</div><br/></body"></html>';
         
             require_once "SendMailSmtpClass.php";
-            $mailSMTP = new SendMailSmtpClass('xanatosdark@yandex.ru', 'Vivanco2!', 'ssl://smtp.yandex.ru', 'White Standard', 465);
+            $mailSMTP = new SendMailSmtpClass(SMTP_USERNAME, SMTP_PWD, SMTP_HOST, SMTP_FROM, SMTP_PORT);
             $headers= "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=utf-8\r\n";
             $headers .= "From: White Standard <noreply@".$baseCookieDomain.">\r\n";

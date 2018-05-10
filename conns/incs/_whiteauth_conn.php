@@ -1,10 +1,10 @@
 <?php
-    var $serverName = "BlockChain5-SQL";
-    var $database = "WhiteCoin";
-    var $user= "sa";
-    var $password = "Pos!2014";
-    var $hostname = "olegtronics.com";
-    var $salt = 'bestprojectever';
+    var $serverName = DB_SERVER_NAME;
+    var $database = DB_NAME;
+    var $user = DB_USER;
+    var $password = DB_PWD;
+    var $hostname = DB_HOST;
+    var $salt = DB_SALT;
     var $key = 'whiteprojectforever';
     var $conn;
 
