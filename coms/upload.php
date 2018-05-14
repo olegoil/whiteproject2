@@ -3,12 +3,13 @@
 header("Access-Control-Allow-Origin: *");
 
 include '../conns/whiteauth.php';
+$sql = new sql();
 
 if (!empty($_FILES)) {
 
     function findexts($filename) {
 		$filename = strtolower($filename);
-		$exts = split("[/\\.]", $filename);
+		$exts = explode(".", $filename);
 		$n = count($exts)-1;
 		$exts = $exts[$n];
 		return $exts;

@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Main | White Standard</title>
+  <title>Main | <?php echo COIN_NAME; ?></title>
 
   <?php
     include '../incs/cssload.php';
@@ -41,7 +41,7 @@
                 </div>
                 <div class="count wcrestricted"><?php echo round($sql->getExchangeRate('USD', 'WCR')['amount1'], 3); ?></div>
 
-                <h3>White Standard</h3>
+                <h3><?php echo COIN_NAME; ?></h3>
                 <p>Exchange rate.</p>
               </div>
             </div>
@@ -168,7 +168,7 @@
                                   <i class="fa fa-user '.$backcolor.'"></i>
                                 </a>
                                 <div class="media-body">
-                                  <a class="title" href="#">White Standard Purchase</a>
+                                  <a class="title" href="#">'.COIN_NAME.' Purchase</a>
                                   <p><strong>$'.$val['amount_from'].'. </strong>'.$handleBtn.'</p>
                                   <p><small>'.date('m/d/Y h:i A', $val['datetime']).'</small></p>
                                 </div>
@@ -211,7 +211,7 @@
                                   <i class="fa fa-user '.$backcolor.'"></i>
                                 </a>
                                 <div class="media-body">
-                                  <a class="title" href="#">White Standard Sale</a>
+                                  <a class="title" href="#">'.COIN_NAME.' Sale</a>
                                   <p><strong>₩'.$val['amount_from'].'. </strong>'.$handleBtn.'</p>
                                   <p><small>'.date('m/d/Y h:i A', $val['datetime']).'</small></p>
                                 </div>
@@ -224,7 +224,7 @@
                                   <i class="fa fa-user green"></i>
                                 </a>
                                 <div class="media-body">
-                                  <a class="title" href="#">White Standard Send</a>
+                                  <a class="title" href="#">'.COIN_NAME.' Send</a>
                                   <p><strong>₩'.$val['amount_from'].'. </strong>Sent to other user</p>
                                   <p><small>'.date('m/d/Y h:i A', $val['datetime']).'</small></p>
                                 </div>
@@ -237,7 +237,7 @@
                                   <i class="fa fa-user green"></i>
                                 </a>
                                 <div class="media-body">
-                                  <a class="title" href="#">White Standard Receive</a>
+                                  <a class="title" href="#">'.COIN_NAME.' Receive</a>
                                   <p><strong>₩'.$val['amount_from'].'. </strong>Received from other user</p>
                                   <p><small>'.date('m/d/Y h:i A', $val['datetime']).'</small></p>
                                 </div>
@@ -265,7 +265,7 @@
                             <i class="fa fa-user blue"></i>
                           </a>
                           <div class="media-body">
-                            <a class="title" href="#">White Standard Sale</a>
+                            <a class="title" href="#"><?php echo COIN_NAME; ?> Sale</a>
                             <p><strong>₩ 40,000.00 </strong>Smart Contract Sent </p>
                             <p> <small>03/21/2018</small>
                             </p>

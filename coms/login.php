@@ -1,9 +1,10 @@
 <?php
 
-include '../conns/config.php';
 include '../conns/whiteauth.php';
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
+
+  $sql = new sql();
 
   $email = "-1";
   if (isset($_POST['email'])) {
@@ -19,6 +20,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
 }
 else {
+  $sql = new sql();
   $sql->checkLogin();
 }
 

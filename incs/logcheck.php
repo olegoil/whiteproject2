@@ -3,6 +3,8 @@ if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
 
     include 'conns/whiteauth.php';
 
+    $sql = new sql();
+
     $sql->checkLogin();
 
 }

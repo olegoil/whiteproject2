@@ -39,6 +39,8 @@ if(isset($_GET['confirm'])) {
 }
 else if(isset($_GET['emailConf']) && isset($_GET['signUpEmail']) && !isset($_GET['confirm'])) {
 
+    $sql = new sql();
+
     $signUpEmail = $sql->hashword(str_replace(' ', '', urldecode($_GET['signUpEmail'])));
     $emailConf = str_replace(' ', '', rawurldecode($_GET['emailConf']));
 

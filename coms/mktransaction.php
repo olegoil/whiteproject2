@@ -4,6 +4,8 @@ if(isset($_POST['act']) && isset($_POST['amnt'])) {
 
   include '../conns/whiteauth.php';
 
+  $sql = new sql();
+
   $to = "-1";
   if (isset($_POST['adr'])) {
     $to = $sql->protect($_POST['adr']);

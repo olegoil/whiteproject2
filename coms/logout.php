@@ -1,9 +1,10 @@
 <?php
 
-include '../conns/config.php';
 include '../conns/whiteauth.php';
 
 if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
+  
+  $sql = new sql();
 
   $sql->logoutUser();
 
@@ -24,4 +25,5 @@ else {
   <body>
     proccess..
   </body>
+</html>
 </html>

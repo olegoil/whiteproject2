@@ -2,6 +2,8 @@
 
   include '../conns/whiteauth.php';
 
+  $sql = new sql();
+
   $pwdold = "-1";
   if (isset($_POST['pwdold'])) {
     $pwdold = $sql->protect($_POST['pwdold']);

@@ -2,8 +2,9 @@
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
 
-  include '../conns/config.php';
   include '../conns/whiteauth.php';
+
+  $sql = new sql();
 
   $email = "-1";
   if (isset($_POST['email'])) {
@@ -20,6 +21,10 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 }
 else {
   echo 5;
+}
+
+?>
+ho 5;
 }
 
 ?>

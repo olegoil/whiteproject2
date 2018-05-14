@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Fees | White Standard</title>
+  <title>Fees | <?php echo COIN_NAME; ?></title>
 
   <?php
     include '../incs/cssload.php';
@@ -140,7 +140,7 @@
                         </div>
                         <div class="panel">
                             <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h4 class="panel-title">White Standard Quote</h4>
+                                <h4 class="panel-title"><?php echo COIN_NAME; ?> Quote</h4>
                             </a>
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">

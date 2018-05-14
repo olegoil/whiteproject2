@@ -1,6 +1,7 @@
 <?php
 
     include '../conns/whiteauth.php';
+    $sql = new sql();
 
     if(isset($_POST['walletSend']) && isset($_POST['walletRec']) && isset($_POST['sendAmount']) && isset($_POST['sendNotes'])) {
 

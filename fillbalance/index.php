@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Purchase | White Standard</title>
+  <title>Purchase | <?php echo COIN_NAME; ?></title>
 
   <?php
     include '../incs/cssload.php';
@@ -36,7 +36,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Purchase White Standard</h3>
+              <h3>Purchase <?php echo COIN_NAME; ?></h3>
             </div>
 
             <div class="title_right">
@@ -97,7 +97,7 @@
                                       <td>
                                         <?php 
                                             if($sql->getUser()['user_name'] != '' && $sql->getUser()['user_lastname'] != '' && $sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'BA\', \''.$sql->getFee('BA', 'WCR')['fee'].'\', \'tokenModal\')">Purchase White Standard</button>';
+                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'BA\', \''.$sql->getFee('BA', 'WCR')['fee'].'\', \'tokenModal\')">Purchase '.COIN_NAME.'</button>';
                                             }
                                             else {
                                               echo '<a href="/profile/" class="btn btn-success btn-xs">Verification</a><br/><b class="text-danger">Upload all required documents and also enter your name and lastname.</b>';
@@ -113,7 +113,7 @@
                                       <td>
                                         <?php 
                                             if($sql->getUser()['user_name'] != '' && $sql->getUser()['user_lastname'] != '' && $sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CA\', \''.$sql->getFee('CA', 'WCR')['fee'].'\', \'tokenModal\')">Purchase White Standard</button>';
+                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CA\', \''.$sql->getFee('CA', 'WCR')['fee'].'\', \'tokenModal\')">Purchase '.COIN_NAME.'</button>';
                                             }
                                             else {
                                               echo '<a href="/profile/" class="btn btn-success btn-xs">Verification</a><br/><b class="text-danger">Upload all required documents and also enter your name and lastname.</b>';
@@ -129,7 +129,7 @@
                                       <td>
                                         <?php 
                                             if($sql->getUser()['user_name'] != '' && $sql->getUser()['user_lastname'] != '' && $sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CC\', \''.$sql->getFee('CC', 'WCR')['fee'].'\', \'tokenModal\')">Purchase White Standard</button>';
+                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CC\', \''.$sql->getFee('CC', 'WCR')['fee'].'\', \'tokenModal\')">Purchase '.COIN_NAME.'</button>';
                                             }
                                             else {
                                               echo '<a href="/profile/" class="btn btn-success btn-xs">Verification</a><br/><b class="text-danger">Upload all required documents and also enter your name and lastname.</b>';
@@ -145,7 +145,7 @@
                                       <td>
                                         <?php 
                                             if($sql->getUser()['user_name'] != '' && $sql->getUser()['user_lastname'] != '' && $sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CC\', \''.$sql->getFee('CC', 'WCR')['fee'].'\', \'tokenModal\')">Purchase White Standard</button>';
+                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CC\', \''.$sql->getFee('CC', 'WCR')['fee'].'\', \'tokenModal\')">Purchase '.COIN_NAME.'</button>';
                                             }
                                             else {
                                               echo '<a href="/profile/" class="btn btn-success btn-xs">Verification</a><br/><b class="text-danger">Upload all required documents and also enter your name and lastname.</b>';
@@ -161,7 +161,7 @@
                                       <td>
                                         <?php 
                                             if($sql->getUser()['user_name'] != '' && $sql->getUser()['user_lastname'] != '' && $sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CC\', \''.$sql->getFee('CC', 'WCR')['fee'].'\', \'tokenModal\')">Purchase White Standard</button>';
+                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal" onclick="chngState(\'CC\', \''.$sql->getFee('CC', 'WCR')['fee'].'\', \'tokenModal\')">Purchase '.COIN_NAME.'</button>';
                                             }
                                             else {
                                               echo '<a href="/profile/" class="btn btn-success btn-xs">Verification</a><br/><b class="text-danger">Upload all required documents and also enter your name and lastname.</b>';
@@ -177,7 +177,7 @@
                                       <td>
                                         <?php 
                                             if($sql->getUser()['user_name'] != '' && $sql->getUser()['user_lastname'] != '' && $sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenBTCModal" onclick="chngState(\'BTC\', \''.$sql->getFee('BTC', 'WCR')['fee'].'\', \'tokenBTCModal\')">Purchase White Standard</button>';
+                                              echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenBTCModal" onclick="chngState(\'BTC\', \''.$sql->getFee('BTC', 'WCR')['fee'].'\', \'tokenBTCModal\')">Purchase '.COIN_NAME.'</button>';
                                             }
                                             else {
                                               echo '<a href="/profile/" class="btn btn-success btn-xs">Verification</a><br/><b class="text-danger">Upload all required documents and also enter your name and lastname.</b>';
@@ -193,7 +193,7 @@
                                       <td>
                                         <?php 
                                             // if($sql->getUser()['user_confirm'] == '1' && $sql->getUser()['user_mobile_confirm'] == '1' && $sql->getUser()['user_adress_confirm'] == '1') {
-                                            //   echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal">Purchase White Standard</button>';
+                                            //   echo '<button class="btn btn-success" data-toggle="modal" data-target="#tokenModal">Purchase '.COIN_NAME.'</button>';
                                             // }
                                             // else {
                                             //   echo '<a href="/profile/" class="btn btn-success">Verification</a>';
@@ -229,7 +229,7 @@
                                 <td><?php echo $sql->getFee('ETH', 'WCUR')['fee']; ?>%</td>
                                 <td>3-5 Days</td>
                                 <td>
-                                  <button class="btn btn-success" data-toggle="modal" data-target="#tokenEthModal">Purchase White Standard</button>
+                                  <button class="btn btn-success" data-toggle="modal" data-target="#tokenEthModal">Purchase <?php echo COIN_NAME; ?></button>
                                 </td>
                               </tr>
                               <tr>
@@ -383,7 +383,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="modal-body">
-          <label>Send Ether to get White Standard to the address below</label>
+          <label>Send Ether to get <?php echo COIN_NAME; ?> to the address below</label>
           <div class="input-group">
             <input type="text" class="form-control col-md-7 col-xs-12" value="0x838C133dA3C493D728d49FA94f4f9B1930651e2a" disabled>
             <span class="input-group-btn">

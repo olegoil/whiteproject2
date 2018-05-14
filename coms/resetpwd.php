@@ -1,13 +1,13 @@
 <?php
 
-include '../conns/config.php';
-
-$baseDomain = BASE_DOMAIN;
-$baseCookieDomain = COOKIE_DOMAIN;
+$baseDomain = 'http://whitecoin.blockchaindevelopers.org';
+$baseCookieDomain = 'whitecoin.blockchaindevelopers.org';
 
 if(isset($_GET['forgotEmail']) && isset($_GET['forgotHash'])) {
 
     include '../conns/whiteauth.php';
+
+    $sql = new sql();
 
     $forgotEmail = $sql->protect($_GET['forgotEmail']);
     $forgotEmailHash = $sql->hashword($forgotEmail);
@@ -28,19 +28,19 @@ if(isset($_GET['forgotEmail']) && isset($_GET['forgotHash'])) {
         // SEND EMAIL TO NEW USER
         $email_subject = "Password reset from ".$baseCookieDomain.".";
         $email_body = '<html style="width:100%;height:100%;"><head><script>setTimeout(function(){window.location.href="'.$baseDomain.'";},2000);</script></head><body style="background-color:#E0F1FF;width:100%;height:100%;">';
-        $email_body .= '<div style="text-align:center;"><img style="margin:10px auto;height:60px;" src="'.LOGO_PATH.'" alt="'.COIN_NAME.'" /></div>';
+        $email_body .= '<div style="text-align:center;"><img style="margin:10px auto;height:60px;" src="'.$baseDomain.'/images/logo.png" alt="White Standard" /></div>';
         $email_body .= '<div style="margin:30px;padding:20px;background-color:#fff;">';
         $email_body .= '<h2 style="text-align:left;">Password changed</h2>';
         $email_body .= '<hr style="color:#E0F1FF;background-color:#E0F1FF;border-color:#E0F1FF;" />';
         $email_body .= '<h2 style="text-align:left;font-weight:normal;">Your temporary password: '.$newPwd.'</h2>';
-        $email_body .= '<br/><br/><br/><h4 style="color:#999;text-align:left;font-weight:normal;margin-bottom:0px;">'.COIN_NAME.' Team</h4>';
+        $email_body .= '<br/><br/><br/><h4 style="color:#999;text-align:left;font-weight:normal;margin-bottom:0px;">White Standard Team</h4>';
         $email_body .= '</div></body"></html>';
     
         require_once "SendMailSmtpClass.php";
-        $mailSMTP = new SendMailSmtpClass(SMTP_USERNAME, SMTP_PWD, SMTP_HOST, SMTP_FROM, SMTP_PORT);
+        $mailSMTP = new SendMailSmtpClass('xanatosdark@yandex.ru', 'Vivanco2!', 'ssl://smtp.yandex.ru', 'White Standard', 465);
         $headers= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=utf-8\r\n";
-        $headers .= "From: ".COIN_NAME." <".COMP_EMAIL_NOREPLY.">\r\n";
+        $headers .= "From: White Standard <noreply@".$baseCookieDomain.">\r\n";
         $mailSMTP->send($forgotEmail, $email_subject, $email_body, $headers);
 
         echo $email_body;

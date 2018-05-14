@@ -4,6 +4,8 @@ if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstnam
 
   include '../conns/whiteauth.php';
 
+  $sql = new sql();
+
   $email = "-1";
   if (isset($_POST['email'])) {
     $email = $sql->protect($_POST['email']);
