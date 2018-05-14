@@ -1,6 +1,7 @@
 <?php
+class protects extends hashes {
     // PROTECT FUNCTION FROM INJECTION, ETC (TO SAVE STRINGS IN DB)
-    function protect($v) {
+    public function protect($v) {
         $v = trim($v);
         $v = stripslashes($v);
         $v = htmlentities($v, ENT_QUOTES);
@@ -8,4 +9,5 @@
         $v = addslashes($v);
         return $v;
     }
+}
 ?>

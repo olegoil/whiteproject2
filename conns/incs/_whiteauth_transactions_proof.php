@@ -1,6 +1,7 @@
 <?php
+class transesp extends banks {
     // MINTER PROOF TRANSACTION
-    $sql->minterProof = function ($recID, $amount, $fromadr) {
+    public function minterProof ($recID, $amount, $fromadr) {
         $when = time();
         
         $queryTrans = "SELECT * FROM transactions WHERE recid = '$recID'";
@@ -22,9 +23,9 @@
                 $this->dbquery($updTrans);
             }
         }
-    };
+    }
     // USER PROOF TRANSACTION
-    $sql->userProof = function ($recID, $amount) {
+    public function userProof ($recID, $amount) {
         
         $queryTrans = "SELECT * FROM transactions WHERE recid = '$recID'";
         $checkTrans = $this->dbquery($queryTrans);
@@ -35,9 +36,9 @@
             $delTrans = "DELETE FROM transactions WHERE recid='$recID'";
             $this->dbquery($delTrans);
         }
-    };
+    }
     // ADMIN PROOF TRANSACTION
-    $sql->adminProof = function ($recID, $amount) {
+    public function adminProof ($recID, $amount) {
         $when = time();
         
         $queryTrans = "SELECT * FROM transactions WHERE recid = '$recID'";
@@ -81,9 +82,9 @@
                 }
             }
         }
-    };
+    }
     // ADMIN PROOF TRANSACTION WCR TO WCUR
-    $sql->adminProof2 = function ($recID, $amount) {
+    public function adminProof2 ($recID, $amount) {
         $when = time();
         
         $queryTrans = "SELECT * FROM transactions WHERE recid = '$recID'";
@@ -123,5 +124,6 @@
                 }
             }
         }
-    };
+    }
+}
 ?>

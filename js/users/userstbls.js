@@ -136,31 +136,31 @@ $(function() {
                 title: 'Status', 
                 "mData": 7,
                 "mRender": function(data, type, full) {
-                    $userconf = '<b class="text-danger">email not confirmed</b>';
+                    var userconf = '<b class="text-danger">email not confirmed</b>';
                     if(full[15]) {
                         if(full[15] == 1) {
-                            $userconf = '<b class="text-success">email confirmed</b>';
+                            userconf = '<b class="text-success">email confirmed</b>';
                         }
                     }
-                    $mobileconf = '<b class="text-danger">mobile not confirmed</b>';
+                    var mobileconf = '<b class="text-danger">mobile not confirmed</b>';
                     if(full[16]) {
                         if(full[16] == 1) {
-                            $mobileconf = '<b class="text-success">mobile confirmed</b>';
+                            mobileconf = '<b class="text-success">mobile confirmed</b>';
                         }
                     }
-                    $addressconf = '<b class="text-danger">address not confirmed</b>';
+                    var addressconf = '<b class="text-danger">address not confirmed</b>';
                     if(full[17]) {
                         if(full[17] == 1) {
-                            $addressconf = '<b class="text-success">address confirmed</b>';
+                            addressconf = '<b class="text-success">address confirmed</b>';
                         }
                     }
-                    $passportconf = '<b class="text-danger">passport not confirmed</b>';
+                    var passportconf = '<b class="text-danger">passport not confirmed</b>';
                     if(full[18]) {
                         if(full[18] == 1) {
-                            $passportconf = '<b class="text-success">passport confirmed</b>';
+                            passportconf = '<b class="text-success">passport confirmed</b>';
                         }
                     }
-                    return $userconf + ' / ' + $mobileconf + ' / ' + $addressconf + ' / ' + $passportconf;
+                    return userconf + ' / ' + mobileconf + ' / ' + addressconf + ' / ' + passportconf;
                 }
             }
         ]

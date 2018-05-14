@@ -1,6 +1,7 @@
 <?php
+class usrdatas extends levels {
     // USER DATA CHANGE
-    $sql->usrDataChange = function ($name, $lastname, $mobile, $skype, $country, $city, $plz, $address) {
+    public function usrDataChange ($name, $lastname, $mobile, $skype, $country, $city, $plz, $address) {
 
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
@@ -43,9 +44,9 @@
             return json_encode(array("success" => 0), JSON_UNESCAPED_UNICODE);
         }
     
-    };
+    }
     // USER NOTES
-    $sql->usrNotes = function ($usr, $notes) {
+    public function usrNotes ($usr, $notes) {
         if($this->checkLevel() != '0') {
             $q = "SELECT * FROM users WHERE user_id='$usr'";
             $result = $this->dbquery($q);
@@ -63,9 +64,9 @@
                 return json_encode(array("success" => 0), JSON_UNESCAPED_UNICODE);
             }
         }
-    };
+    }
     // USER DATA
-    $sql->getUser = function () {
+    public function getUser () {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $u = $_COOKIE['u'];
             $h = $_COOKIE['h'];
@@ -78,9 +79,9 @@
                 return $row;
             }
         }
-    };
+    }
     // ADMIN USER DATA
-    $sql->getAdminUser = function ($usr) {
+    public function getAdminUser ($usr) {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $u = $_COOKIE['u'];
             $h = $_COOKIE['h'];
@@ -108,5 +109,6 @@
                 return $row;
             }
         }
-    };
+    }
+}
 ?>

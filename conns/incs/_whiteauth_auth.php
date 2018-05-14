@@ -1,6 +1,7 @@
 <?php
+class auths extends pwds {
     // USER LOGIN
-    $sql->loginUser = function ($email, $pwd) {
+    public function loginUser ($email, $pwd) {
 
         $emailhash = $this->hashword($email);
         $pwd = $this->hashword($pwd);
@@ -48,9 +49,9 @@
             header(sprintf("Location: %s", $loginFailed));
         }
 
-    };
+    }
     // USER LOGOUT
-    $sql->logoutUser = function () {
+    public function logoutUser () {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $when = time();
             $cookielife = $when - 60*30;
@@ -65,9 +66,9 @@
         }
         $headerLogout = "http://whitecoin.blockchaindevelopers.org";
         header(sprintf("Location: %s", $headerLogout));
-    };
+    }
     // USER CHECK LOGIN
-    $sql->checkLogin = function () {
+    public function checkLogin () {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $u = $_COOKIE['u'];
             $h = $_COOKIE['h'];
@@ -108,5 +109,6 @@
             $notcookie = "http://whitecoin.blockchaindevelopers.org/coms/logout.php";
             header(sprintf("Location: %s", $notcookie));
         }
-    };
+    }
+}
 ?>

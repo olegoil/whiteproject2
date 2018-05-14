@@ -1,6 +1,7 @@
 <?php
+class levels extends ips {
     // USER CHECK USER TYPE
-    $sql->checkLevel = function () {
+    public function checkLevel () {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $u = $_COOKIE['u'];
             $h = $_COOKIE['h'];
@@ -19,9 +20,9 @@
         else {
             return 0;
         }
-    };
+    }
     // LEVEL NAME
-    $sql->levelName = function ($usertype) {
+    public function levelName ($usertype) {
         switch($usertype) {
             case 0:
                 return 'USER';
@@ -39,5 +40,6 @@
                 return 'USER';
                 break;
         }
-    };
+    }
+}
 ?>

@@ -1,6 +1,7 @@
 <?php
+class ips extends transes {
     // GET CLIENTS IP
-    $sql->get_client_ip_server = function () {
+    public function get_client_ip_server () {
         $ipaddress = '';
         if($_SERVER['REMOTE_ADDR'])
             $ipaddress = $_SERVER['REMOTE_ADDR'];
@@ -8,5 +9,6 @@
             $ipaddress = 'UNKNOWN';
      
         return $ipaddress;
-    };
+    }
+}
 ?>

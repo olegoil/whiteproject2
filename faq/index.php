@@ -55,7 +55,7 @@
                   <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
 
                     <?php if($sql->checkLevel() == '1') { ?>
-                      <div class="panel">
+                      <!-- <div class="panel">
                         <a class="panel-heading" role="tab" id="headingBtns" data-toggle="collapse" data-parent="#accordion" href="#collapseBtns" aria-expanded="true" aria-controls="collapseBtns">
                           <h4 class="panel-title">Manager actions</h4>
                         </a>
@@ -64,7 +64,7 @@
                               <button class="btn btn-default" onclick=""></button>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                     <?php } ?>
 
                     <div class="panel">

@@ -1,5 +1,6 @@
 <?php
 
+include '../conns/config.php';
 include '../conns/whiteauth.php';
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
@@ -17,7 +18,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
   $sql->loginUser($email, $pwd);
 
 }
-else 
+else {
   $sql->checkLogin();
 }
 

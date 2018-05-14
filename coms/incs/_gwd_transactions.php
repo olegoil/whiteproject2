@@ -131,7 +131,7 @@
 
     }
     else {
-        $gotdata['aaData'][] = array(null, null, null, null, null, null, null, null, null, null, null, null, null);
+        $gotdata['aaData'][] = array(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     $gotdata['sEcho'] = intval($_POST['sEcho']);

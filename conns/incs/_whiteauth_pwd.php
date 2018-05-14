@@ -1,6 +1,7 @@
 <?php
+class pwds extends usrdatas {
     // USER PASSWORD RESET
-    $sql->passwordReset = function ($useremail) {
+    public function passwordReset ($useremail) {
     
         if($useremail == "") return json_encode(array("emailReset" => 0), JSON_UNESCAPED_UNICODE);
 
@@ -23,8 +24,8 @@
             $results['user_reset_pwd'] = $forgotHash;
             $results['emailReset'] = 1;
 
-            $baseDomain = 'http://whitecoin.blockchaindevelopers.org';
-            $baseCookieDomain = 'whitecoin.blockchaindevelopers.org';
+            $baseDomain = BASE_DOMAIN;
+            $baseCookieDomain = COOKIE_DOMAIN;
 
             // SEND RESET EMAIL TO USER
             $email_subject = "Email password reset from whitecoin.blockchaindevelopers.org.";
@@ -53,9 +54,9 @@
         }
         return json_encode(array("emailReset" => 0), JSON_UNESCAPED_UNICODE);
     
-    };
+    }
     // USER PASSWORD CHANGE
-    $sql->passwordChange = function ($oldpwd, $newpwd) {
+    public function passwordChange ($oldpwd, $newpwd) {
 
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
@@ -89,5 +90,6 @@
             return json_encode(array("success" => 0), JSON_UNESCAPED_UNICODE);
         }
     
-    };
+    }
+}
 ?>

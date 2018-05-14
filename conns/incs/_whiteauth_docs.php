@@ -1,14 +1,15 @@
-<?php    
+<?php
+class doxs extends fees {
     // UPLOAD FILE
-    $sql->uploadFile = function ($filename, $doctype) {
+    public function uploadFile ($filename, $doctype) {
         $recId = $this->createRecordID();
         $u = $_COOKIE['u'];
         $when = time();
         $query = "INSERT INTO documents (recid, userid, doctype, datetime, docdel, confirmed, confdatetime, docurl) VALUES ('$recId', '$u', '$doctype', '$when', '0', '0', '0', '$filename')";
         $this->dbquery($query);
-    };
+    }
     // DOCUMENT PROOFED
-    $sql->docProof = function ($recID, $amount) {
+    public function docProof ($recID, $amount) {
         $when = time();
         
         $queryTrans = "SELECT * FROM documents WHERE recid = '$recID'";
@@ -62,9 +63,9 @@
         else {
             return 'no doc';
         }
-    };
+    }
     // CHECK CONFIRMED DOCS
-    $sql->getDocsConfirmed = function ($doctype, $usr) {
+    public function getDocsConfirmed ($doctype, $usr) {
         $queryTrans = "SELECT * FROM documents WHERE userid = '$usr' AND doctype='$doctype' ORDER BY datetime DESC";
         $checkTrans = $this->dbquery($queryTrans);
         $rowTrans = odbc_fetch_array($checkTrans);
@@ -76,5 +77,6 @@
         else {
             return 'no doc';
         }
-    };
+    }
+}
 ?>

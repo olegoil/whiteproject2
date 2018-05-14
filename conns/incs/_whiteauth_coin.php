@@ -1,6 +1,7 @@
 <?php
+class coins extends doxs {
     // REQUEST WHITECOINS
-    $sql->coinRequest = function ($bankID, $amount, $notes, $state) {
+    public function coinRequest ($bankID, $amount, $notes, $state) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         $when = time();
@@ -41,9 +42,9 @@
 
         $this->sendMail($this->getUser()['user_mail'], $recID, $amount, 0);
         return 1;
-    };
+    }
     // SELL REQUEST WHITECOINS
-    $sql->coinSell = function ($bankID, $amount, $notes) {
+    public function coinSell ($bankID, $amount, $notes) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         if($this->getBalance(0)['amount'] >= $amount) {
@@ -60,9 +61,9 @@
         else {
             return 0;
         }
-    };
+    }
     // REQUEST WHITECOINS UNRESTRICTED
-    $sql->coinRequestUR = function ($bankID, $amount, $notes) {
+    public function coinRequestUR ($bankID, $amount, $notes) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         $when = time();
@@ -73,9 +74,9 @@
         $this->dbquery($queryTrans);
 
         $this->sendMail($this->getUser()['user_mail'], $recID, $amount, 1);
-    };
+    }
     // REQUEST WHITECOINS SELLING BITCOINS
-    $sql->coinRequestBTC = function ($bankID, $amount, $notes, $state, $fromadr) {
+    public function coinRequestBTC ($bankID, $amount, $notes, $state, $fromadr) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         $when = time();
@@ -101,9 +102,9 @@
         $this->dbquery($queryTrans);
 
         return 1;
-    };
+    }
     // SELL REQUEST WHITECOINS TO GET BITCOINS
-    // $sql->coinSellBTC = function ($bankID, $amount, $notes) {
+    // public function coinSellBTC ($bankID, $amount, $notes) {
     //     $u = $_COOKIE['u'];
     //     $h = $_COOKIE['h'];
     //     if($this->getBalance(0)['amount'] >= $amount) {
@@ -120,9 +121,9 @@
     //     else {
     //         return 0;
     //     }
-    // };
+    // }
     // RESTRICTED TO UNRESTRICTED WHITECOIN
-    $sql->wcrtoWcur = function ($amount) {
+    public function wcrtoWcur ($amount) {
         $u = $_COOKIE['u'];
         $when = time();
         $recID = $this->createRecordID();
@@ -133,9 +134,9 @@
         $this->dbquery($queryTrans);
         $this->sendMail($this->getUser()['user_mail'], $recID, $amount, 3);
         return 1;
-    };
+    }
     // REQUEST WHITECOINS UNRESTRICTED
-    $sql->coinSellUR = function ($bankID, $amount, $notes) {
+    public function coinSellUR ($bankID, $amount, $notes) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         if($this->getBalance(1)['amount'] >= $amount) {
@@ -153,5 +154,6 @@
         else {
             return 0;
         }
-    };
+    }
+}
 ?>

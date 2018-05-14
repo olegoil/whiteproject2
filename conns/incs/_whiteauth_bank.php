@@ -1,6 +1,7 @@
 <?php
+class banks extends coins {
     // BANK DATA
-    $sql->getBank = function () {
+    public function getBank () {
         $query = "SELECT * FROM bank";
         $checkBank = $this->dbquery($query);
         $row = odbc_fetch_array($checkBank);
@@ -9,9 +10,9 @@
         if($rows > 0) {
             return $row;
         }
-    };
+    }
     // LIST WALLETS
-    $sql->adminGetWallets = function () {
+    public function adminGetWallets () {
         $queryWallet = "SELECT * FROM wallets WHERE type = '0' ORDER BY datetime DESC";
         $checkWallet = $this->dbquery($queryWallet);
         $rowWallet = odbc_fetch_array($checkWallet);
@@ -45,9 +46,9 @@
             } while ($rowWallet = odbc_fetch_array($checkWallet));
         }
         return $tblobj;
-    };
+    }
     // GET BANK
-    $sql->adminGetBank = function () {
+    public function adminGetBank () {
         $queryBank = "SELECT * FROM bank";
         $checkBank = $this->dbquery($queryBank);
         $rowBank = odbc_fetch_array($checkBank);
@@ -55,9 +56,9 @@
         if($rowsBank > 0) {
             return $rowBank;
         }
-    };
+    }
     // ADD TO BANK
-    $sql->adminCoinCreate = function ($bankID, $amount) {
+    public function adminCoinCreate ($bankID, $amount) {
         $queryBank = "SELECT * FROM bank WHERE recid = '$bankID'";
         $checkBank = $this->dbquery($queryBank);
         $rowBank = odbc_fetch_array($checkBank);
@@ -80,9 +81,9 @@
         else {
             return 'no wallet';
         }
-    };
+    }
     // REMOVE FROM BANK
-    $sql->adminCoinRemove = function ($bankID, $amount) {
+    public function adminCoinRemove ($bankID, $amount) {
         $queryBank = "SELECT * FROM bank WHERE recid = '$bankID'";
         $checkBank = $this->dbquery($queryBank);
         $rowBank = odbc_fetch_array($checkBank);
@@ -106,9 +107,9 @@
                 return 'no money';
             }
         }
-    };
+    }
     // COMMISSIONS TO BANK
-    $sql->commissionsToBank = function ($bankID, $from, $amount) {
+    public function commissionsToBank ($bankID, $from, $amount) {
         $queryBank = "SELECT * FROM bank WHERE recid = '$bankID'";
         $checkBank = $this->dbquery($queryBank);
         $rowBank = odbc_fetch_array($checkBank);
@@ -130,9 +131,9 @@
         else {
             return 'no wallet';
         }
-    };
+    }
     // CHECK CURRENCY
-    $sql->getCurrency = function ($val) {
+    public function getCurrency ($val) {
         switch ($val) {
             case 0: return 'WCR';
                 break;
@@ -147,9 +148,9 @@
             default: return 'WCR';
                 break;
         }
-    };
+    }
     // GET EXCHANGE RATES
-    $sql->getExchangeRate = function ($currency1, $currency2) {
+    public function getExchangeRate ($currency1, $currency2) {
         $queryExchange = "SELECT * FROM exchange WHERE currency1 = '$currency1' AND currency2 = '$currency2'";
         $checkExchange = $this->dbquery($queryExchange);
         $row = odbc_fetch_array($checkExchange);
@@ -157,9 +158,9 @@
         if($rows > 0) {
             return $row;
         }
-    };
+    }
     // GET EXCHANGE RATES
-    $sql->getRates = function () {
+    public function getRates () {
         $lasttime = time() - 600;
         $queryCheck = "SELECT * FROM exchange WHERE currency1 != 'WCR' AND currency2 != 'WCR' AND currency1 != 'WCUR' AND currency2 != 'WCUR' AND datetime <= '$lasttime' ORDER BY datetime DESC";
         $checkRates = $this->dbquery($queryCheck);
@@ -176,9 +177,9 @@
             $this->dbquery($queryTrans);
         }
 
-    };
+    }
     // MAKE EXCHANGE
-    $sql->makeExchange = function ($from, $to, $amount, $notes) {
+    public function makeExchange ($from, $to, $amount, $notes) {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $u = $_COOKIE['u'];
             $h = $_COOKIE['h'];
@@ -225,9 +226,9 @@
                 return 0;
             }
         }
-    };
+    }
     // CURRENCY NAME
-    $sql->currName = function ($name) {
+    public function currName ($name) {
         $realName = '';
         switch($name) {
             case 'WCR':
@@ -259,9 +260,9 @@
                 break;
         }
         return $realName;
-    };
+    }
     // SET QUOTE
-    $sql->setQuote = function ($amount) {
+    public function setQuote ($amount) {
         
         $when = time();
 
@@ -281,11 +282,12 @@
             return 1;
         }
         
-    };
+    }
     // SET ETHEREUM WALLET
-    $sql->setEthWallet = function ($ethwallet) {
+    public function setEthWallet ($ethwallet) {
         $u = $_COOKIE['u'];
         $updWallet = "UPDATE wallets SET wallet_minter='$ethwallet' WHERE type='3' AND userid='$u'";
         $this->dbquery($updWallet);
-    };
+    }
+}
 ?>

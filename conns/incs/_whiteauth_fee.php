@@ -1,6 +1,7 @@
 <?php
+class fees {
     // GET FEE
-    $sql->getFee = function ($from, $to) {
+    public function getFee ($from, $to) {
         $query = "SELECT * FROM fee WHERE currfrom = '$from' AND currto='$to'";
         $checkFee = $this->dbquery($query);
         $row = odbc_fetch_array($checkFee);
@@ -8,9 +9,9 @@
         if($rows > 0) {
             return $row;
         }
-    };
+    }
     // SET FEE
-    $sql->setFee = function ($from, $to, $percent) {
+    public function setFee ($from, $to, $percent) {
         
         $when = time();
 
@@ -30,9 +31,9 @@
             return 1;
         }
         
-    };
+    }
     // LIST FEES
-    $sql->listFee = function () {
+    public function listFee () {
         $query = "SELECT * FROM fee";
         $checkFee = $this->dbquery($query);
         $row = odbc_fetch_array($checkFee);
@@ -47,5 +48,6 @@
             } while ($row = odbc_fetch_array($checkFee));
         }
         return $result;
-    };
+    }
+}
 ?>

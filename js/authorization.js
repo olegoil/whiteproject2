@@ -17,18 +17,18 @@ jQuery(document).ready(function() {
 
   function validateEmail(email) {
     var valmail = 0;
-          if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-              valmail = 1;
-          }
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        valmail = 1;
+    }
     return valmail;
-      }
+  }
 
   function forgotEmailSubmit() {
-          jQuery('#waitForForgot').show();
-          jQuery('#invalidEmail').hide();
-          jQuery('#proofEmailSbmt').hide();
-          jQuery('#forgotEmailErr').hide();
-          jQuery('#forgotEmailNoSuchErr').hide();
+    jQuery('#waitForForgot').show();
+    jQuery('#invalidEmail').hide();
+    jQuery('#proofEmailSbmt').hide();
+    jQuery('#forgotEmailErr').hide();
+    jQuery('#forgotEmailNoSuchErr').hide();
     jQuery('#checking2').show();
     if (jQuery('#forgotEmail').val() != '') {
       if(validateEmail(jQuery('#forgotEmail').val()) == 1) {
@@ -69,10 +69,10 @@ jQuery(document).ready(function() {
         });
       }
       else {
-              jQuery('#proofEmailSbmt').show();
+        jQuery('#proofEmailSbmt').show();
         jQuery('#checking2').hide();
         jQuery('#waitForForgot').hide();
-              jQuery('#invalidEmail').show();
+        jQuery('#invalidEmail').show();
       }
     } else {
       jQuery('#waitForForgot').hide();
@@ -80,9 +80,9 @@ jQuery(document).ready(function() {
       jQuery('#proofEmailSbmt').show();
       jQuery('#checking2').hide();
       jQuery('#forgotEmailNoSuchErr').hide();
-            jQuery('#invalidEmail').hide();
+      jQuery('#invalidEmail').hide();
     }
-      }
+  }
 
   var strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
 

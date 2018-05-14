@@ -1,6 +1,7 @@
 <?php
+class randgens extends registers {
     // RANDOM STRING GENERATOR
-    $sql->generateRandomString = function ($length = 9) {
+    public function generateRandomString ($length = 9) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -8,9 +9,9 @@
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
-    };
+    }
     // ID GENERATOR
-    $sql->createRecordID = function () {
+    public function createRecordID () {
         $valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYX1234567890";
         $length = 32;
         
@@ -36,9 +37,9 @@
 
         // return our finished random string
         return $random_string;
-    };
+    }
     // ID GENERATOR
-    $sql->createBankWireID = function () {
+    public function createBankWireID () {
         $valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYX1234567890";
         $length = 10;
         
@@ -64,5 +65,6 @@
 
         // return our finished random string
         return $random_string;
-    };
+    }
+}
 ?>

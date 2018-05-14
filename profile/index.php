@@ -1,6 +1,8 @@
 <?php
   include '../conns/whiteauth.php';
 
+  $sql = new sql();
+
   $usr = $sql->protect($_COOKIE['u']);
   if(isset($_GET['usr'])) {
     $usr = $sql->protect($_GET['usr']);
@@ -185,7 +187,7 @@
                             </div>
                             <div class="form-group">
                               <label for="mobile" class="control-label col-md-6 col-sm-6 col-xs-12">Mobile phone
-                                <input type="mobile" id="mobile" name="mobile" class="form-control col-md-7 col-xs-12" value="<?php echo $sql->getAdminUser($usr)['user_mobile']; ?>" <?php if(isset($_GET['usr']) || $sql->getUser()['user_mobile_confirm'] == 1) { echo 'disabled'; } ?>>
+                                <input type="mobile" id="mobile" name="mobile" class="form-control col-md-7 col-xs-12" value="<?php echo $sql->getAdminUser($usr)['user_mobile']; ?>" <?php if(isset($_GET['usr'])) { echo 'disabled'; } ?>>
                               </label>
                             </div>
                             <!-- <div class="form-group">
@@ -295,7 +297,7 @@
                             </div>
                           </div>
 
-                          <div class="col-md-3 col-xs-12 widget widget_tally_box docupl">
+                          <!-- <div class="col-md-3 col-xs-12 widget widget_tally_box docupl">
                             <div class="x_panel ui-ribbon-container fixed_height_390">
 
                               <?php if($sql->getAdminUser($usr)['user_mobile_confirm'] == '1') { ?>
@@ -312,7 +314,6 @@
                               </div>
                               <div class="x_content">
                                 <?php if(!isset($_GET['usr'])) { ?>
-                                  <!-- <h3 class="name_title">Mobile phone</h3> -->
                                   <p>Confirm your mobile phone number</p>
 
                                   <div class="divider"></div>
@@ -339,7 +340,7 @@
                                 <?php } ?>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
 
                           <div class="col-md-3 col-xs-12 widget widget_tally_box docupl">
                             <div class="x_panel ui-ribbon-container fixed_height_390">
@@ -507,18 +508,137 @@
 
   <script type="text/javascript" src="../js/app.js"></script>
 
-  <script>
-    var getusr = '<?php echo $_GET['usr']; ?>';
-  </script>
-
   <script type="text/javascript" src="../js/profile/usrdata.js"></script>
-
-  <?php if($sql->getAdminUser($usr)['user_adress_confirm'] == '1' && isset($_GET['usr'])) { ?>
-
-      <script type="text/javascript" src="../js/profile/savenotes.js"></script>
-
-  <?php } ?>
   
+  <!-- datepicker -->
+  <script type="text/javascript">
+    var strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+    function chngPwd() {
+      jQuery('div#matchPassErr').hide();
+      jQuery('div#pwdStrength').hide();
+      jQuery('div#oldPassErr').hide();
+      jQuery('div#unknownError').hide();
+      jQuery('div#pwdSuccess').hide();
+      jQuery('div#checkingpwd').show();
+      jQuery('button.pwdchangebtn').hide();
+      if(jQuery('input#oldpwd').val() != '') {
+        if (strongRegex.test(jQuery('input#newpwd').val())) {
+          if(jQuery('input#newpwd').val() == jQuery('input#newpwdrep').val()) {
+            var jsonstr = {
+              pwdold: jQuery('input#oldpwd').val(),
+              pwdnew: jQuery('input#newpwd').val(),
+              act: 'chngpwd'
+            };
+            // console.log(JSON.stringify(jsonstr));
+            jQuery.ajax({
+              dataType: 'json',
+              type: 'post',
+              url: '/coms/usrdata.php',
+              data: jsonstr,
+              success: function(ress) {
+                // console.log(JSON.stringify(ress));
+                if (ress.success === 1) {
+                  jQuery('#pwdform')[0].reset();
+                  jQuery('div#matchPassErr').hide();
+                  jQuery('div#pwdStrength').hide();
+                  jQuery('div#oldPassErr').hide();
+                  // jQuery('div#takenEmail').hide();
+                  jQuery('div#checkingpwd').hide();
+                  jQuery('button.pwdchangebtn').show();
+                  jQuery('div#pwdSuccess').show();
+                }
+                else if (ress.success === 2) {
+                  jQuery('div#matchPassErr').hide();
+                  jQuery('div#pwdStrength').hide();
+                  jQuery('div#oldPassErr').show();
+                  // jQuery('div#takenEmail').hide();
+                  jQuery('div#checkingpwd').hide();
+                  jQuery('button.pwdchangebtn').show();
+                  jQuery('div#pwdSuccess').hide();
+                }
+                else {
+                  jQuery('div#matchPassErr').hide();
+                  jQuery('div#pwdStrength').hide();
+                  jQuery('div#oldPassErr').hide();
+                  // jQuery('div#takenEmail').hide();
+                  jQuery('div#checkingpwd').hide();
+                  jQuery('button.pwdchangebtn').show();
+                  jQuery('div#pwdSuccess').hide();
+                  jQuery('div#unknownError').show();
+                }
+              },
+              error: function(err) {
+                jQuery('div#matchPassErr').hide();
+                jQuery('div#pwdStrength').hide();
+                jQuery('div#oldPassErr').hide();
+                // jQuery('div#takenEmail').hide();
+                jQuery('div#checkingpwd').hide();
+                jQuery('button.pwdchangebtn').show();
+                jQuery('div#pwdSuccess').hide();
+                jQuery('div#unknownError').show();
+                // console.log('ERR ' + JSON.stringify(err));
+              }
+            });
+          }
+          else {
+            jQuery('div#checkingpwd').hide();
+            jQuery('button.pwdchangebtn').show();
+            jQuery('div#matchPassErr').show();
+          }
+        }
+        else {
+          jQuery('div#checkingpwd').hide();
+          jQuery('button.pwdchangebtn').show();
+          jQuery('div#pwdStrength').show();
+        }
+      }
+      else {
+        jQuery('div#checkingpwd').hide();
+        jQuery('button.pwdchangebtn').show();
+        jQuery('div#pwdStrength').show();
+      }
+    }
+    function saveUsr() {
+      jQuery('div#checkingpwd').show();
+      jQuery('button.saveusr').hide();
+      jQuery('div#saveSuccess').hide();
+      jQuery('div#saveUnknownError').hide();
+      var jsonstr = $('form#userform').serialize()+'&act=updusr';
+      // console.log(JSON.stringify(jsonstr));
+      jQuery.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: '/coms/usrdata.php',
+        data: jsonstr,
+        success: function(res) {
+          // console.log(JSON.stringify(res))
+          if (res.success === 1) {
+            jQuery('div#checkingpwd').hide();
+            jQuery('button.saveusr').show();
+            jQuery('div#saveSuccess').show();
+            jQuery('div#saveUnknownError').hide();
+          }
+          else {
+            jQuery('div#checkingpwd').hide();
+            jQuery('button.saveusr').show();
+            jQuery('div#saveSuccess').hide();
+            jQuery('div#saveUnknownError').show();
+          }
+        },
+        error: function(err) {
+          jQuery('div#checkingpwd').hide();
+          jQuery('button.saveusr').show();
+          jQuery('div#saveSuccess').hide();
+          jQuery('div#saveUnknownError').show();
+          // console.log('ERR '+JSON.stringify(err))
+        }
+      });
+    }
+    
+  </script>
+  <?php if($sql->getAdminUser($usr)['user_adress_confirm'] == '1' && isset($_GET['usr'])) { ?>
+      <script type="text/javascript" src="../js/profile/savenotes.js"></script>
+    <?php } ?>
   <script type="text/javascript" src="../js/profile/datepicker.js"></script>
 
 </body>

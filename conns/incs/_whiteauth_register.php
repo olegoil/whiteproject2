@@ -1,6 +1,7 @@
 <?php
+class registers extends confmails {
     // USER REGISTRATION
-    $sql->registerUser = function ($email, $pwd) {
+    public function registerUser ($email, $pwd) {
 
         $emailhash = $this->hashword($email);
         $pwd = $this->hashword($pwd);
@@ -56,9 +57,9 @@
 
         return $regArr;
 
-    };
+    }
     // MINTER REGISTRATION
-    $sql->registerMinter = function ($email, $pwd, $firstname, $lastname) {
+    public function registerMinter ($email, $pwd, $firstname, $lastname) {
 
         $emailhash = $this->hashword($email);
         $pwd = $this->hashword($pwd);
@@ -111,9 +112,9 @@
 
         return $regArr;
 
-    };
+    }
     // KYC REGISTRATION
-    $sql->registerKYCAML = function ($email, $pwd, $firstname, $lastname) {
+    public function registerKYCAML ($email, $pwd, $firstname, $lastname) {
 
         $emailhash = $this->hashword($email);
         $pwd = $this->hashword($pwd);
@@ -166,9 +167,9 @@
 
         return $regArr;
 
-    };
+    }
     // CREATE WALLETS AT REGISTRATION
-    $sql->createWallets = function ($rowUsr) {
+    public function createWallets ($rowUsr) {
         $recIDwalletWCR = $this->createRecordID();
         $recIDwalletWCUR = $this->createRecordID();
         $recIDwalletBTC = $this->createRecordID();
@@ -182,9 +183,9 @@
         $this->dbquery($queryWalletBTC);
         $queryWalletETH = "INSERT INTO wallets (recid, userid, type, amount, datetime, walletdel) VALUES ('$recIDwalletETH', '".$rowUsr['user_id']."', 3, 0, '$when', 0)";
         $this->dbquery($queryWalletETH);
-    };
+    }
     // DELETE MINTER
-    $sql->minterDel = function ($recID) {
+    public function minterDel ($recID) {
         $queryTrans = "SELECT * FROM users WHERE user_id = '$recID'";
         $checkTrans = $this->dbquery($queryTrans);
         $rowTrans = odbc_fetch_array($checkTrans);
@@ -200,9 +201,9 @@
         else {
             return 0;
         }
-    };
+    }
     // TOGGLE MINTER RESTRICTION
-    $sql->minterRest = function ($amnt, $to, $fromadr) {
+    public function minterRest ($amnt, $to, $fromadr) {
         if($amnt == 0) {
             $updUser = "UPDATE users SET user_minter='0' WHERE user_id='$fromadr'";
             $this->dbquery($updUser);
@@ -217,5 +218,6 @@
                 $this->dbquery($updUser);
             }
         }
-    };
+    }
+}
 ?>

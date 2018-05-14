@@ -1,6 +1,7 @@
 <?php
+class transes extends transesp {
     // GET TRANSACTIONS
-    $sql->getTransactions = function () {
+    public function getTransactions () {
         $u = $_COOKIE['u'];
         $query = "SELECT * FROM transactions WHERE userid = '$u' ORDER BY datetime DESC";
         $checkBank = $this->dbquery($query);
@@ -67,9 +68,9 @@
             } while ($row = odbc_fetch_array($checkBank));
         }
         return $tblobj;
-    };
+    }
     // GET TRANSACTIONS GRAPH
-    $sql->getTransactionsGraph = function () {
+    public function getTransactionsGraph () {
         $u = $_COOKIE['u'];
         $wallet = $this->getBalance(0)['recid'];
         $query = "SELECT * FROM transactions WHERE userid='$u' OR wallet_to='".$this->getBalance(0)['recid']."' ORDER BY datetime DESC, changed DESC";
@@ -84,9 +85,9 @@
             } while ($row = odbc_fetch_array($checkBank));
         }
         return json_encode($tblobj, JSON_UNESCAPED_UNICODE);
-    };
+    }
     // GET INCOME TRANSACTIONS SUM
-    $sql->getIncomeTransactions = function () {
+    public function getIncomeTransactions () {
         $u = $_COOKIE['u'];
         $wcr = $this->getBalance(0)['recid'];
         $query = "SELECT * FROM transactions WHERE wallet_from!='0' AND wallet_from!='".$wcr."' AND wallet_to='".$wcr."' ORDER BY datetime DESC";
@@ -101,9 +102,9 @@
             } while ($row = odbc_fetch_array($checkBank));
         }
         return $amount;
-    };
+    }
     // GET OUTGOING TRANSACTIONS SUM
-    $sql->getOutTransactions = function () {
+    public function getOutTransactions () {
         $u = $_COOKIE['u'];
         $wcr = $this->getBalance(0)['recid'];
         $query = "SELECT * FROM transactions WHERE wallet_to!='0' AND wallet_to!='".$wcr."' AND wallet_from='".$wcr."' ORDER BY datetime DESC";
@@ -118,9 +119,9 @@
             } while ($row = odbc_fetch_array($checkBank));
         }
         return $amount;
-    };
+    }
     // GET TRANSACTION
-    $sql->getTransaction = function ($transid) {
+    public function getTransaction ($transid) {
         $query = "SELECT * FROM transactions WHERE recid=".$transid;
         $checkBank = $this->dbquery($query);
         $row = odbc_fetch_array($checkBank);
@@ -129,9 +130,9 @@
         if($rows > 0) {
             return $row;
         }
-    };
+    }
     // LIST TRANSACTIONS MINT
-    $sql->mintGetTransactions = function ($bankID) {
+    public function mintGetTransactions ($bankID) {
         $queryTrans = "SELECT * FROM transactions WHERE acception = '0' AND (wallet_from = '$bankID' OR wallet_to = '$bankID') ORDER BY datetime DESC";
         $checkTrans = $this->dbquery($queryTrans);
         $rowTrans = odbc_fetch_array($checkTrans);
@@ -185,9 +186,9 @@
             } while ($rowTrans = odbc_fetch_array($checkTrans));
         }
         return $tblobj;
-    };
+    }
     // LIST TRANSACTIONS ADMIN
-    $sql->adminGetTransactions = function () {
+    public function adminGetTransactions () {
         $queryTrans = "SELECT * FROM transactions ORDER BY datetime DESC";
         $checkTrans = $this->dbquery($queryTrans);
         $rowTrans = odbc_fetch_array($checkTrans);
@@ -241,9 +242,9 @@
             } while ($rowTrans = odbc_fetch_array($checkTrans));
         }
         return $tblobj;
-    };
+    }
     // MAKE PRIVATE TRANSACTION
-    $sql->makeTransaction = function ($from, $to, $amount, $notes) {
+    public function makeTransaction ($from, $to, $amount, $notes) {
         if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
             $u = $_COOKIE['u'];
             $h = $_COOKIE['h'];
@@ -290,9 +291,9 @@
                 return 0;
             }
         }
-    };
+    }
     // SEND WHITECOINS UNRESTRICTED
-    $sql->coinSendUR = function ($from, $to, $amount, $notes) {
+    public function coinSendUR ($from, $to, $amount, $notes) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         // if($this->getBalance(1)['amount'] >= $amount) {
@@ -308,9 +309,9 @@
         // else {
         //     return 0;
         // }
-    };
+    }
     // ADMIN CONFIRM TRANSACTION
-    $sql->adminConfirmTransaction = function ($recID, $confirm) {
+    public function adminConfirmTransaction ($recID, $confirm) {
         $queryTrans = "SELECT * FROM transactions WHERE recid = '$recID' AND acception = '0'";
         $checkTrans = $this->dbquery($queryTrans);
         $rowTrans = odbc_fetch_array($checkTrans);
@@ -328,9 +329,9 @@
                 $this->dbquery($querySet);
             }
         }
-    };
+    }
     // GET BANK TRANSACTIONS
-    $sql->adminGetBankTransactions = function ($recId) {
+    public function adminGetBankTransactions ($recId) {
         $queryTrans = "SELECT * FROM transactions WHERE wallet_from = '$recId' OR wallet_to = '$recId' ORDER BY datetime DESC";
         $checkTrans = $this->dbquery($queryTrans);
         $rowTrans = odbc_fetch_array($checkTrans);
@@ -372,9 +373,9 @@
             } while ($rowTrans = odbc_fetch_array($checkTrans));
         }
         return $tblobj;
-    };
+    }
     // MAKE ADMIN TRANSACTION
-    $sql->adminMakeTransaction = function ($from, $to, $amount, $notes) {
+    public function adminMakeTransaction ($from, $to, $amount, $notes) {
         $u = $_COOKIE['u'];
         $h = $_COOKIE['h'];
         $queryCheck = "SELECT * FROM bank WHERE recid = '$from' AND amount >= '$amount'";
@@ -415,5 +416,20 @@
         else {
             return 'no money';
         }
-    };
+    }
+    // GET BALANCE
+    public function getBalance ($type) {
+        if(isset($_COOKIE['u']) && isset($_COOKIE['h'])) {
+            $u = $_COOKIE['u'];
+            $h = $_COOKIE['h'];
+            $query = "SELECT * FROM wallets WHERE userid = '$u' AND type='$type'";
+            $checkWallet = $this->dbquery($query);
+            $row = odbc_fetch_array($checkWallet);
+            $rows = odbc_num_rows($checkWallet);
+            if($rows > 0) {
+                return $row;
+            }
+        }
+    }
+}
 ?>
